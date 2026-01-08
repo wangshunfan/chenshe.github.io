@@ -142,11 +142,13 @@
             justify-content: center;
             position: relative;
             padding: 0 60px;
+            overflow: hidden;
         }
 
         .hero-content {
             text-align: center;
             z-index: 1;
+            position: relative;
         }
 
         .hero h1 {
@@ -209,119 +211,338 @@
             left: 100%;
         }
 
-        /* 装饰灯带 */
-        .light-strip {
+        /* 动态跑马灯灯带容器 */
+        .led-container {
             position: absolute;
-            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-            opacity: 0.5;
-            box-shadow: 0 0 30px var(--primary-color), 0 0 60px var(--primary-color);
-        }
-
-        .light-strip-horizontal {
-            width: 60%;
-            height: 1px;
-            top: 40%;
-            left: 20%;
-        }
-
-        .light-strip-vertical {
-            width: 1px;
-            height: 40%;
-            right: 15%;
-            top: 30%;
-            background: linear-gradient(180deg, transparent, var(--secondary-color), transparent);
-        }
-
-        /* 灯带角装饰 */
-        .corner-light {
-            position: absolute;
-            width: 150px;
-            height: 150px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
+            z-index: 0;
         }
 
-        .corner-light::before,
-        .corner-light::after {
+        /* 顶部跑马灯灯带 */
+        .led-strip-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                var(--primary-color) 20%,
+                #fff 50%,
+                var(--primary-color) 80%,
+                transparent 100%
+            );
+            box-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
+            animation: led-flow-horizontal 3s linear infinite;
+        }
+
+        @keyframes led-flow-horizontal {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* 底部跑马灯灯带 */
+        .led-strip-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                var(--secondary-color) 20%,
+                #fff 50%,
+                var(--secondary-color) 80%,
+                transparent 100%
+            );
+            box-shadow: 0 0 20px var(--secondary-color), 0 0 40px var(--secondary-color);
+            animation: led-flow-horizontal-reverse 3s linear infinite;
+        }
+
+        @keyframes led-flow-horizontal-reverse {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* 左侧跑马灯灯带 */
+        .led-strip-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                var(--primary-color) 20%,
+                #fff 50%,
+                var(--primary-color) 80%,
+                transparent 100%
+            );
+            box-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
+            animation: led-flow-vertical 4s linear infinite;
+        }
+
+        @keyframes led-flow-vertical {
+            0% {
+                background-position: 0 -200%;
+            }
+            100% {
+                background-position: 0 200%;
+            }
+        }
+
+        /* 右侧跑马灯灯带 */
+        .led-strip-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                var(--secondary-color) 20%,
+                #fff 50%,
+                var(--secondary-color) 80%,
+                transparent 100%
+            );
+            box-shadow: 0 0 20px var(--secondary-color), 0 0 40px var(--secondary-color);
+            animation: led-flow-vertical-reverse 4s linear infinite;
+        }
+
+        @keyframes led-flow-vertical-reverse {
+            0% {
+                background-position: 0 200%;
+            }
+            100% {
+                background-position: 0 -200%;
+            }
+        }
+
+        /* 四角装饰LED灯珠 */
+        .led-corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+        }
+
+        .led-corner::before,
+        .led-corner::after {
+            content: '';
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow:
+                0 0 10px #fff,
+                0 0 20px var(--primary-color),
+                0 0 40px var(--primary-color);
+            animation: led-pulse 1.5s ease-in-out infinite;
+        }
+
+        .led-corner::before {
+            width: 8px;
+            height: 8px;
+        }
+
+        .led-corner::after {
+            width: 5px;
+            height: 5px;
+            animation-delay: 0.3s;
+        }
+
+        .led-corner.top-left {
+            top: 8px;
+            left: 8px;
+        }
+
+        .led-corner.top-left::before {
+            top: 0;
+            left: 0;
+        }
+
+        .led-corner.top-left::after {
+            top: 2px;
+            left: 2px;
+        }
+
+        .led-corner.top-right {
+            top: 8px;
+            right: 8px;
+        }
+
+        .led-corner.top-right::before {
+            top: 0;
+            right: 0;
+        }
+
+        .led-corner.top-right::after {
+            top: 2px;
+            right: 2px;
+        }
+
+        .led-corner.bottom-left {
+            bottom: 8px;
+            left: 8px;
+        }
+
+        .led-corner.bottom-left::before {
+            bottom: 0;
+            left: 0;
+        }
+
+        .led-corner.bottom-left::after {
+            bottom: 2px;
+            left: 2px;
+        }
+
+        .led-corner.bottom-right {
+            bottom: 8px;
+            right: 8px;
+        }
+
+        .led-corner.bottom-right::before {
+            bottom: 0;
+            right: 0;
+        }
+
+        .led-corner.bottom-right::after {
+            bottom: 2px;
+            right: 2px;
+        }
+
+        @keyframes led-pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(0.8);
+            }
+        }
+
+        /* 内部装饰框 - 跑马灯效果 */
+        .led-frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 60%;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .led-frame::before,
+        .led-frame::after {
             content: '';
             position: absolute;
             background: var(--primary-color);
-            box-shadow: 0 0 20px var(--primary-color);
+            box-shadow: 0 0 15px var(--primary-color);
         }
 
-        .corner-light.top-left {
-            top: 100px;
-            left: 60px;
-        }
-
-        .corner-light.top-left::before {
-            width: 60px;
+        .led-frame::before {
+            width: 30%;
             height: 2px;
-            top: 0;
-            left: 0;
+            top: -2px;
+            left: -2px;
+            animation: frame-flow-right 2s linear infinite;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
         }
 
-        .corner-light.top-left::after {
+        .led-frame::after {
             width: 2px;
-            height: 60px;
-            top: 0;
-            left: 0;
+            height: 30%;
+            bottom: -2px;
+            right: -2px;
+            animation: frame-flow-up 2s linear infinite;
+            background: linear-gradient(180deg, var(--primary-color), transparent);
         }
 
-        .corner-light.top-right {
-            top: 100px;
-            right: 60px;
+        @keyframes frame-flow-right {
+            0% {
+                width: 0;
+                left: -2px;
+            }
+            100% {
+                width: 30%;
+                left: calc(100% + 2px);
+            }
         }
 
-        .corner-light.top-right::before {
-            width: 60px;
-            height: 2px;
-            top: 0;
-            right: 0;
+        @keyframes frame-flow-up {
+            0% {
+                height: 0;
+                bottom: -2px;
+            }
+            100% {
+                height: 30%;
+                bottom: calc(100% + 2px);
+            }
         }
 
-        .corner-light.top-right::after {
-            width: 2px;
-            height: 60px;
-            top: 0;
-            right: 0;
+        /* 浮动光点 */
+        .floating-light {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+            animation: float-up 6s linear infinite;
         }
 
-        .corner-light.bottom-left {
-            bottom: 100px;
-            left: 60px;
+        .floating-light:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
         }
 
-        .corner-light.bottom-left::before {
-            width: 60px;
-            height: 2px;
-            bottom: 0;
-            left: 0;
+        .floating-light:nth-child(2) {
+            left: 30%;
+            animation-delay: 1.5s;
         }
 
-        .corner-light.bottom-left::after {
-            width: 2px;
-            height: 60px;
-            bottom: 0;
-            left: 0;
+        .floating-light:nth-child(3) {
+            left: 50%;
+            animation-delay: 3s;
         }
 
-        .corner-light.bottom-right {
-            bottom: 100px;
-            right: 60px;
+        .floating-light:nth-child(4) {
+            left: 70%;
+            animation-delay: 4.5s;
         }
 
-        .corner-light.bottom-right::before {
-            width: 60px;
-            height: 2px;
-            bottom: 0;
-            right: 0;
+        .floating-light:nth-child(5) {
+            left: 90%;
+            animation-delay: 2s;
         }
 
-        .corner-light.bottom-right::after {
-            width: 2px;
-            height: 60px;
-            bottom: 0;
-            right: 0;
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) scale(1);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(0.5);
+                opacity: 0;
+            }
         }
 
         /* 区块通用样式 */
@@ -1024,12 +1245,30 @@
 
     <!-- Hero区域 -->
     <section class="hero">
-        <div class="corner-light top-left"></div>
-        <div class="corner-light top-right"></div>
-        <div class="corner-light bottom-left"></div>
-        <div class="corner-light bottom-right"></div>
-        <div class="light-strip light-strip-horizontal"></div>
-        <div class="light-strip light-strip-vertical"></div>
+        <!-- LED跑马灯容器 -->
+        <div class="led-container">
+            <!-- 四边跑马灯灯带 -->
+            <div class="led-strip-top"></div>
+            <div class="led-strip-bottom"></div>
+            <div class="led-strip-left"></div>
+            <div class="led-strip-right"></div>
+
+            <!-- 四角LED灯珠 -->
+            <div class="led-corner top-left"></div>
+            <div class="led-corner top-right"></div>
+            <div class="led-corner bottom-left"></div>
+            <div class="led-corner bottom-right"></div>
+
+            <!-- 内部装饰框跑马灯 -->
+            <div class="led-frame"></div>
+
+            <!-- 浮动光点 -->
+            <div class="floating-light"></div>
+            <div class="floating-light"></div>
+            <div class="floating-light"></div>
+            <div class="floating-light"></div>
+            <div class="floating-light"></div>
+        </div>
 
         <div class="hero-content">
             <h1>光韵空间设计</h1>
