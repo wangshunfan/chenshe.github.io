@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈设设计 | 专业室内设计公司</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gray: #f5f5f5;
+            --secondary-gray: #e0e0e0;
+            --dark-gray: #333333;
+            --medium-gray: #666666;
+            --light-gray: #fafafa;
+            --white: #ffffff;
+            --accent: #8c8c8c;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--light-gray);
+        }
+
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--dark-gray);
+        }
+
+        .logo span {
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--dark-gray);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--dark-gray);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 首页横幅 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23e0e0e0" fill-opacity="0.3" d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,149.3C672,139,768,149,864,165.3C960,181,1056,203,1152,197.3C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-btn {
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--dark-gray);
+            background: transparent;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            background: var(--dark-gray);
+            color: var(--white);
+        }
+
+        /* 关于我们 */
+        .about {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title .line {
+            width: 60px;
+            height: 1px;
+            background: var(--dark-gray);
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+        }
+
+        .about-text p {
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .about-image {
+            height: 450px;
+            background: url('http://store.is.autonavi.com/showpic/b18fd0c54bc6fbd69cde1eb6b53c2fa2?type=pic') center/cover no-repeat;
+            border-radius: 4px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        /* 统计数据 */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            padding: 4rem 5%;
+            background: var(--primary-gray);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--dark-gray);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--medium-gray);
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+        }
+
+        /* 作品展示 */
+        .portfolio {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            height: 320px;
+            background: linear-gradient(135deg, #e8e6e1 0%, #d4d0cb 100%);
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        /* 为每个作品设置不同的渐变背景 */
+        .portfolio-item:nth-child(1) { background: linear-gradient(145deg, #d9d4ce 0%, #c4c0b8 100%); }
+        .portfolio-item:nth-child(2) { background: linear-gradient(145deg, #c8c4c4 0%, #b0b0b0 100%); }
+        .portfolio-item:nth-child(3) { background: linear-gradient(145deg, #d5d0cc 0%, #c2beb6 100%); }
+        .portfolio-item:nth-child(4) { background: linear-gradient(145deg, #cfcccc 0%, #b8b4b4 100%); }
+        .portfolio-item:nth-child(5) { background: linear-gradient(145deg, #d8d4d0 0%, #c4c0bc 100%); }
+        .portfolio-item:nth-child(6) { background: linear-gradient(145deg, #c9c5c1 0%, #b5b1ad 100%); }
+
+        /* 添加图片占位符图标 */
+        .portfolio-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .portfolio-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%),
+                linear-gradient(225deg, rgba(255,255,255,0.05) 0%, transparent 50%),
+                linear-gradient(45deg, rgba(0,0,0,0.1) 0%, transparent 50%);
+        }
+
+        /* 模拟室内空间效果 */
+        .portfolio-image::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 80px;
+            border: 2px solid rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .portfolio-image span {
+            position: relative;
+            z-index: 1;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(2px);
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            opacity: 0;
+            transform: scale(1.1);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(30,30,30,0.92);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.4s ease;
+            padding: 2rem;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-bottom: 0.8rem;
+            color: var(--white);
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.1s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay h3 {
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 1px;
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.2s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay p {
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay .category {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 1.5rem;
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay .category {
+            transform: translateY(0);
+        }
+
+        /* 服务理念 */
+        .philosophy {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .philosophy-content p {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+
+        .philosophy-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            padding: 2rem 1rem;
+            border: 1px solid var(--secondary-gray);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            border-color: var(--dark-gray);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--medium-gray);
+        }
+
+        .feature-item h4 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            font-size: 0.85rem;
+            color: var(--medium-gray);
+        }
+
+        /* 联系我们 */
+        .contact {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--medium-gray);
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-item p {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--secondary-gray);
+            background: var(--light-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--dark-gray);
+        }
+
+        .contact-form textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .submit-btn {
+            padding: 1rem 3rem;
+            background: var(--dark-gray);
+            color: var(--white);
+            border: none;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--medium-gray);
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--secondary-gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: var(--secondary-gray);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .about-content,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .philosophy-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                letter-spacing: 4px;
+            }
+
+            .stats {
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .philosophy-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="logo">陈<span>设计</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#about">关于我们</a></li>
+            <li><a href="#portfolio">作品展示</a></li>
+            <li><a href="#contact">联系我们</a></li>
+        </ul>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section class="hero" id="home">
+        <h1>陈设设计</h1>
+        <p>简约 · 质感 · 生活</p>
+        <button class="hero-btn" onclick="document.getElementById('portfolio').scrollIntoView()">浏览作品</button>
+    </section>
+
+    <!-- 关于我们 -->
+    <section class="about" id="about">
+        <div class="section-title">
+            <h2>关于我们</h2>
+            <div class="line"></div>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>用设计诠释生活美学</h3>
+                <p>陈设设计有限公司成立于2015年，是一家专注于高端住宅和商业空间设计的专业设计公司。我们相信，优秀的室内设计不仅仅是美学的呈现，更是对生活品质的追求与诠释。</p>
+                <p>我们的设计理念源于对生活本质的洞察，在简约与现代之间寻找平衡，为每一位客户打造独特而舒适的空间体验。</p>
+            </div>
+            <div class="about-image"></div>
+        </div>
+    </section>
+
+    <!-- 统计数据 -->
+    <section class="stats">
+        <div class="stat-item">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">行业经验</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">完成项目</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">客户满意度</div>
+        </div>
+    </section>
+
+    <!-- 作品展示 -->
+    <section class="portfolio" id="portfolio">
+        <div class="section-title">
+            <h2>作品展示</h2>
+            <div class="line"></div>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img class="portfolio-img" src="https://img0.baidu.com/it/u=1470017711,409025586&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1071" alt="麓湖公馆">
+                <div class="portfolio-overlay">
+                    <h3>麓湖公馆</h3>
+                    <p>现代简约 · 私宅设计</p>
+                    <span class="category">RESIDENTIAL</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img class="portfolio-img" src="https://img1.baidu.com/it/u=1763147555,717392475&fm=253&app=138&f=JPEG?w=800&h=1071" alt="华润办公室">
+                <div class="portfolio-overlay">
+                    <h3>华润办公室</h3>
+                    <p>工业风格 · 商业空间</p>
+                    <span class="category">COMMERCIAL</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img class="portfolio-img" src="https://img0.baidu.com/it/u=1453976062,795143671&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1280" alt="香山别墅">
+                <div class="portfolio-overlay">
+                    <h3>香山别墅</h3>
+                    <p>新中式 · 私宅设计</p>
+                    <span class="category">RESIDENTIAL</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img class="portfolio-img" src="https://img1.baidu.com/it/u=248222388,878223588&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" alt="太古里展厅">
+                <div class="portfolio-overlay">
+                    <h3>太古里展厅</h3>
+                    <p>极简主义 · 商业空间</p>
+                    <span class="category">COMMERCIAL</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img class="portfolio-img" src="https://img1.baidu.com/it/u=477545747,2810359328&fm=253&app=138&f=JPEG?w=800&h=800" alt="金融城公寓">
+                <div class="portfolio-overlay">
+                    <h3>金融城公寓</h3>
+                    <p>轻奢风格 · 私宅设计</p>
+                    <span class="category">RESIDENTIAL</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img class="portfolio-img" src="https://img1.baidu.com/it/u=3227801011,273802525&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1055" alt="青城山民宿">
+                <div class="portfolio-overlay">
+                    <h3>青城山民宿</h3>
+                    <p>自然主义 · 酒店设计</p>
+                    <span class="category">HOSPITALITY</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务理念 -->
+    <section class="philosophy">
+        <div class="section-title">
+            <h2>设计理念</h2>
+            <div class="line"></div>
+        </div>
+        <div class="philosophy-content">
+            <p>我们相信，好的设计应该服务于生活，让空间成为连接人与环境的桥梁。在每一个项目中，我们都致力于找到功能与美学的最佳平衡点。</p>
+            <div class="philosophy-features">
+                <div class="feature-item">
+                    <div class="feature-icon">◇</div>
+                    <h4>简约设计</h4>
+                    <p>去除繁复，回归本质</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">◇</div>
+                    <h4>品质至上</h4>
+                    <p>精选材质，追求细节</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">◇</div>
+                    <h4>以人为本</h4>
+                    <p>关注需求，创造舒适</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>联系我们</h2>
+            <div class="line"></div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>开启您的空间之旅</h3>
+                <div class="contact-item">
+                    <label>地址</label>
+                    <p>河源市源城区东华路振业馨园二期76-2号商铺</p>
+                </div>
+                <div class="contact-item">
+                    <label>电话</label>
+                    <p>0762-3453488</p>
+                </div>
+                <div class="contact-item">
+                    <label>邮箱</label>
+                    <p>hello@chensheji.com</p>
+                </div>
+                <div class="contact-item">
+                    <label>工作时间</label>
+                    <p>周一至周五 9:00 - 18:00</p>
+                </div>
+            </div>
+            <form class="contact-form" onsubmit="return handleSubmit(event)">
+                <input type="text" placeholder="您的姓名" required>
+                <input type="email" placeholder="您的邮箱" required>
+                <input type="tel" placeholder="您的电话">
+                <textarea placeholder="请描述您的需求..."></textarea>
+                <button type="submit" class="submit-btn">发送信息</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-logo">陈<span>设计</span></div>
+        <div class="footer-links">
+            <a href="#home">首页</a>
+            <a href="#about">关于我们</a>
+            <a href="#portfolio">作品展示</a>
+            <a href="#contact">联系我们</a>
+        </div>
+        <p class="copyright">© 2026 陈设设计有限公司 版权所有</p>
+    </footer>
+
+    <script>
+        // 表单提交处理
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('感谢您的留言，我们会尽快与您联系。');
+            e.target.reset();
+            return false;
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
